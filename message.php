@@ -14,8 +14,8 @@
     
     <form action="message_post.php" method="post">
         <p>
-        <label for="pseudo">Pseudo</label> : <input type="text" name="User" id="pseudo" /><br />
-        <label for="message">Message</label> :  <input type="text" name="Messages" id="message" /><br />
+        <label for="pseudo">Pseudo</label> : <input type="text" name="user" id="pseudo" /><br />
+        <label for="message">Message</label> :  <input type="text" name="messages" id="message" /><br />
 
         <input type="submit" value="Envoyer" />
 	</p>
@@ -33,12 +33,12 @@ catch(Exception $e)
 }
 
 // Récupération des 10 derniers messages
-$reponse = $bdd->query('SELECT User, Messages FROM minichate ORDER BY ID DESC LIMIT 0, 10');
+$reponse = $bdd->query('SELECT user, messages FROM minichate ORDER BY ID DESC LIMIT 0, 10');
 
 // Affichage de chaque message (toutes les données sont protégées par htmlspecialchars)
 while ($donnees = $reponse->fetch())
 {
-	echo '<p><strong>' . htmlspecialchars($donnees['User']) . '</strong> : ' . htmlspecialchars($donnees['Messages']) . '</p>';
+	echo '<p><strong>' . htmlspecialchars($donnees['User']) . '</strong> : ' . htmlspecialchars($donnees['messages']) . '</p>';
 }
 
 $reponse->closeCursor();
